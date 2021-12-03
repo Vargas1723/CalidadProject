@@ -1,0 +1,25 @@
+{
+  "name": "calidadproject",
+  "version": "1.0.0",
+  "description": "Inventario SC",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vargas1723/calidadProject.git"
+  },
+  "keywords": [
+    "Inventario"
+  ],
+  "author": "Braulio Vargas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Vargas1723/calidadProject/issues"
+  },
+  "homepage": "https://github.com/Vargas1723/calidadProject#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

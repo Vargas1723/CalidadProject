@@ -1,4 +1,3 @@
-import { STATES } from "mongoose"
 import {
   USER_LOGIN_FAIL,
   USER_LOGOUT,

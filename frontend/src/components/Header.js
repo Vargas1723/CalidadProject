@@ -19,9 +19,7 @@ const Header = () => {
       <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
         <Container>
           <LinkContainer to='/'>
-            <Navbar.Brand>
-              Seguimiento de programa y mejora de procesos
-            </Navbar.Brand>
+            <Navbar.Brand>Proshop</Navbar.Brand>
           </LinkContainer>
 
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
@@ -29,7 +27,7 @@ const Header = () => {
             <Nav className='ms-auto'>
               <LinkContainer to='/cart'>
                 <Nav.Link>
-                  <i className='fas fa-file'></i> Solicitud de equipo
+                  <i className='fas fa-file'></i> Cart
                 </Nav.Link>
               </LinkContainer>
               {userInfo ? (

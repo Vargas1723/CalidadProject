@@ -1,7 +1,6 @@
 import React, { useEffect } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Button, Row, Col, ListGroup, Image, Card } from "react-bootstrap"
-import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import Message from "../components/Message"
 import CheckoutSteps from "../components/CheckoutSteps"
@@ -137,10 +136,11 @@ const PlaceOrderScreen = () => {
                   <Col>${cart.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
+
               <ListGroup.Item>
-                <ListGroup.Item>
-                  {error && <Message variant='danger'>{error}</Message>}
-                </ListGroup.Item>
+                {error && <Message variant='danger'>{error}</Message>}
+              </ListGroup.Item>
+              <ListGroup.Item>
                 <Button
                   type='button'
                   className='btn-block w-100'

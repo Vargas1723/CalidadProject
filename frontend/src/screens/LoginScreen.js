@@ -22,7 +22,6 @@ const LoginScreen = () => {
 
   useEffect(() => {
     if (userInfo) {
-      console.log(redirect)
       if (redirect !== "/" || redirect === "shipping") {
         navigate("/" + redirect)
       } else {

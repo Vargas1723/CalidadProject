@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Link, useNavigate, useLocation, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { Form, Button } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
 import Message from "../components/Message"
@@ -38,7 +38,7 @@ const UserEditScreen = () => {
         }
       }
       
-  }, [user, userId, dispatch, successUpdate])
+  }, [user, userId, dispatch, successUpdate, navigate])
 
   const submitHandler = (e) => {
     e.preventDefault()

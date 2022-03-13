@@ -5,9 +5,64 @@ import Product from "../models/productModel.js"
 // @route   GET /api/products
 // @access  Public
 const getProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find({})
+  const pageSize = 12
+  const page = Number(req.query.pageNumber) || 1
 
-  res.json(products)
+  const keywordName = req.query.keyword
+    ? {
+        name: {
+          $regex: req.query.keyword,
+          $options: "i",
+        },
+      }
+    : {}
+
+  const keywordBrand = req.query.keyword
+    ? {
+        brand: {
+          $regex: req.query.keyword,
+          $options: "i",
+        },
+      }
+    : {}
+
+  const keywordDescription = req.query.keyword
+    ? {
+        description: {
+          $regex: req.query.keyword,
+          $options: "i",
+        },
+      }
+    : {}
+
+  const keywordCategory = req.query.keyword
+    ? {
+        category: {
+          $regex: req.query.keyword,
+          $options: "i",
+        },
+      }
+    : {}
+  const count = await Product.countDocuments({
+    $or: [
+      { ...keywordName },
+      { ...keywordBrand },
+      { ...keywordDescription },
+      { ...keywordCategory },
+    ],
+  })
+  const products = await Product.find({
+    $or: [
+      { ...keywordName },
+      { ...keywordBrand },
+      { ...keywordDescription },
+      { ...keywordCategory },
+    ],
+  })
+    .limit(pageSize)
+    .skip(pageSize * (page - 1))
+
+  res.json({ products, page, pages: Math.ceil(count / pageSize) })
 })
 
 // @desc    Fetch single product
@@ -85,7 +140,6 @@ const updateProduct = asyncHandler(async (req, res) => {
   }
 })
 
-
 // @desc    Create new review
 // @route   POST /api/products/:id/reviews
 // @access  Private
@@ -101,7 +155,7 @@ const createProductReview = asyncHandler(async (req, res) => {
 
     if (alreadyReviewed) {
       res.status(400)
-      throw new Error('Product already reviewed')
+      throw new Error("Product already reviewed")
     }
 
     const review = {
@@ -120,13 +174,12 @@ const createProductReview = asyncHandler(async (req, res) => {
       product.reviews.length
 
     await product.save()
-    res.status(201).json({ message: 'Review added' })
+    res.status(201).json({ message: "Review added" })
   } else {
     res.status(404)
-    throw new Error('Product not found')
+    throw new Error("Product not found")
   }
 })
-
 
 export {
   getProducts,
